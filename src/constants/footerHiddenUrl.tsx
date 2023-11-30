@@ -1,0 +1,1 @@
+export const FOOTER_HIDDEN_PAGE_URL = ['/login', '/join', '/pay', '/pay-result-success', '/pay-result-fail'];
