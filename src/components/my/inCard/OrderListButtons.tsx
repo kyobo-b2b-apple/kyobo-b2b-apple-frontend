@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import CommonButton, { ButtonType } from '../../common/Button';
 import { MediumButton03, MediumButton04, MediumButton05 } from '../../../styles/buttonStyle';
+import CancleModal from '../../../components/modal/CancleModal';
 
 interface OrderListButtonsProps {
   orderButtonText: string[];
@@ -12,6 +13,16 @@ interface OrderListButtonsProps {
 //reviewId는 타입 추가
 
 const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <ButtonListWrapper>
       <ShippingButton type={ButtonType.Primary} onClick={handleShippingClick}>
@@ -19,11 +30,14 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
       </ShippingButton>
 
       <GeneralWrapper>
-        <GeneralButton type={ButtonType.Secondary}>{orderButtonText[0]}</GeneralButton>
+        <GeneralButton type={ButtonType.Secondary} onClick={handleOpenModal}>
+          {orderButtonText[0]}
+        </GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
           {orderButtonText[1]}
         </GeneralButton>
       </GeneralWrapper>
+      <CancleModal modalOpen={isModalOpen} modalClose={handleCloseModal} onCouponSubmit={() => {}} />
     </ButtonListWrapper>
   );
 };
