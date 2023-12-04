@@ -4,10 +4,12 @@ import CommonButton, { ButtonType } from '../../common/Button';
 import { MediumButton03, MediumButton04, MediumButton05 } from '../../../styles/buttonStyle';
 
 interface OrderListButtonsProps {
-  orderButtonText: string;
+  orderButtonText: string[];
   handleShippingClick: () => void;
   handleReviewClick: () => void;
 }
+
+//reviewId는 타입 추가
 
 const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
   return (
@@ -17,9 +19,9 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
       </ShippingButton>
 
       <GeneralWrapper>
-        <GeneralButton type={ButtonType.Secondary}>교환, 반품 신청</GeneralButton>
+        <GeneralButton type={ButtonType.Secondary}>{orderButtonText[0]}</GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
-          {orderButtonText}
+          {orderButtonText[1]}
         </GeneralButton>
       </GeneralWrapper>
     </ButtonListWrapper>
@@ -30,7 +32,7 @@ export default OrderListButtons;
 const ButtonListWrapper = styled.div`
   display: flex;
 
-  @media screen and (min-width: 480px)  {
+  @media screen and (min-width: 480px) {
     gap: 0px 6px;
     margin-top: auto;
   }
@@ -41,7 +43,7 @@ const ButtonListWrapper = styled.div`
 `;
 
 const ShippingButton = styled(CommonButton)`
-  @media screen and (min-width: 480px)  {
+  @media screen and (min-width: 480px) {
     ${MediumButton03}
   }
   @media screen and (max-width: 479px) {
@@ -57,7 +59,7 @@ const GeneralWrapper = styled.div`
 const GeneralButton = styled(CommonButton)`
   white-space: nowrap;
 
-  @media screen and (min-width: 480px)  {
+  @media screen and (min-width: 480px) {
     ${MediumButton04}
   }
   @media screen and (max-width: 479px) {

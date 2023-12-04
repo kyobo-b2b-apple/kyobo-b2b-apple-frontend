@@ -11,10 +11,13 @@ import CardContent from '../inCard/CardContent';
 import LeftContentImage from '../inCard/LeftContentImage';
 import RightContent from '../inCard/RightContent';
 import { OrderCardProps } from '../../../interfaces/orderItemProps';
+import { useEffect, useState } from 'react';
 
-const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
+const OrderCard = ({ item, date, orderCode, reviewId }: OrderCardProps) => {
   const isMobile = useIsOS(OS.MOBILE);
   const navigate = useNavigate();
+  const [orderButtonText, setOrder] = useState('취소 요청');
+  const [reviewButtonText, setReview] = useState('후기 작성하기');
 
   const handleShowDetailClick = (orderCode: string) => {
     navigate(`/my-page/order-detail/${orderCode}`);
@@ -27,6 +30,13 @@ const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
   const handleReviewClick = () => {
     navigate('/my-page/product-review');
   };
+
+  useEffect(() => {
+    if (reviewId === -1) {
+      setOrder('교환,반품 신청');
+      setReview('후기 상세보기');
+    }
+  }, [reviewId]);
 
   return (
     <Card>
@@ -41,7 +51,7 @@ const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
           <OptionText text={`옵션 : ${item.product.acpOption}`} />
           {!isMobile && (
             <OrderListButtons
-              orderButtonText="후기 작성하기"
+              orderButtonText={[orderButtonText, reviewButtonText]}
               handleShippingClick={() => handleShippingClick(orderCode)}
               handleReviewClick={handleReviewClick}
             />
@@ -51,7 +61,7 @@ const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
 
       {isMobile && (
         <OrderListButtons
-          orderButtonText="후기 작성하기"
+          orderButtonText={[orderButtonText, reviewButtonText]}
           handleShippingClick={() => handleShippingClick(orderCode)}
           handleReviewClick={handleReviewClick}
         />

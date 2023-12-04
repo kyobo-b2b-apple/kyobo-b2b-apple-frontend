@@ -1,4 +1,4 @@
-import { OrderProductProps, OrderItemProps, OrderItemListProps } from '../interfaces/orderItemProps';
+import { OrderProductProps, OrderItemProps } from '../interfaces/orderItemProps';
 
 const exProduct: OrderProductProps = {
   accOption1: 'Magic Mouse - White (+89,000원)',
@@ -18,6 +18,24 @@ const exProduct: OrderProductProps = {
   'https://apple-store-s3-bucket.s3.ap-northeast-2.amazonaws.com/device-thumbnails/iPad/iPadPro11/cell/SpaceGray/iPad_Pro_Cellular_11_in_4th_generation_Space_Gray_PDP_Image_Position-1b__KO-KR_20221011_V1.jpg',
 ],*/
 
+//reviewId=> 후기 여부 확인을 위해서
+//csStatus=> 주문 상태를 확인하기 위해서
+
+export interface OrderItemListProps {
+  createdAt: number[];
+  deliveryFee: number;
+  discountAmount: number;
+  discountRate: number;
+  id: number;
+  orderAmount: number;
+  orderCode: string;
+  orderItems: OrderItemProps[];
+  orderState: string;
+  productAmount?: number;
+  updatedAt: number[];
+  reviewId: number;
+}
+
 const exOrderItems: OrderItemProps[] = [
   {
     id: 67,
@@ -33,7 +51,7 @@ const exOrderItems: OrderItemProps[] = [
   },
 ];
 
-const exRefundData: OrderItemListProps[] = [
+const orderTestData: OrderItemListProps[] = [
   {
     createdAt: [2023, 8, 31, 7, 56, 53],
     deliveryFee: 2500,
@@ -46,9 +64,21 @@ const exRefundData: OrderItemListProps[] = [
     orderState: 'PREPARE_PRODUCT',
     productAmount: 9880000,
     updatedAt: [2023, 8, 31, 7, 57, 15],
-    reviewId: 1,
+    reviewId: -1,
+  },
+  {
+    createdAt: [2023, 8, 31, 7, 56, 53],
+    deliveryFee: 2500,
+    discountAmount: 0,
+    discountRate: 0,
+    id: 41,
+    orderAmount: 9882500,
+    orderCode: '2023083141',
+    orderItems: exOrderItems,
+    orderState: 'PREPARE_PRODUCT',
+    productAmount: 9880000,
+    updatedAt: [2023, 8, 31, 7, 57, 15],
+    reviewId: 2,
   },
 ];
-
-//reviwdId 속성 추가
-export default exRefundData;
+export default orderTestData;
