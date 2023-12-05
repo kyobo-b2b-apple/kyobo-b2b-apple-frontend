@@ -6,48 +6,6 @@ import pagedown from '../../assets/img/floating/ic_float_pagedown.png';
 import pageup from '../../assets/img/floating/ic_float_pageup.png';
 import { useState } from 'react';
 
-const Container = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
-const Listbox = styled.div<ListboxProps>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  height: 46px;
-  position: absolute;
-  width: 100%;
-`;
-
-const ListboxOption = styled.div<ListboxOptionProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-top: 1px solid ${(props) => props.theme.color.grey60};
-  background-color: ${(props) => props.theme.color.grey90};
-  height: 46px;
-  border-radius: ${({ isLast }) => (isLast ? '0 0 8px 8px' : '0')};
-
-  &:hover {
-    background-color: ${(props) => props.theme.color.grey60};
-  }
-`;
-
-const ListboxTitleContainer = styled.div<ListboxProps>`
-  background-color: ${(props) => props.theme.color.grey80};
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 16px;
-  border-radius: ${({ isOpen }) => (isOpen ? '8px 8px 0px 0px' : '8px')};
-  cursor: pointer;
-`;
-
-const DownBtn = styled.button`
-  background: none;
-`;
-
 interface SelectProps {
   menuItems: string[];
 }
@@ -101,3 +59,45 @@ const SelectDropDown: React.FC<SelectProps> = ({ menuItems }) => {
 };
 
 export default SelectDropDown;
+
+const Container = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+const Listbox = styled.div<ListboxProps>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  height: 46px;
+  position: absolute;
+  width: 100%;
+`;
+
+const ListboxOption = styled.div<ListboxOptionProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-top: 1px solid ${(props) => props.theme.color.grey60};
+  background-color: ${(props) => props.theme.color.grey90};
+  height: 46px;
+  border-radius: ${({ isLast }) => (isLast ? '0 0 8px 8px' : '0')};
+
+  &:hover {
+    background-color: ${(props) => props.theme.color.grey60};
+  }
+`;
+
+const ListboxTitleContainer = styled.div<ListboxProps>`
+  background-color: ${(props) => props.theme.color.grey80};
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-radius: ${({ isOpen }) => (isOpen ? '8px 8px 0px 0px' : '8px')};
+  cursor: pointer;
+`;
+
+const DownBtn = styled.button`
+  background: none;
+`;
