@@ -5,6 +5,7 @@ import Text from '../common/Text';
 import Spacer from '../common/Spacer';
 import CommonButton, { ButtonType } from '../common/Button';
 import { InputStyle } from '../common/Input';
+import SelectDropDown from '../../components/common/SelectDropDown';
 
 export interface CouponModalProps {
   modalOpen: boolean;
@@ -33,7 +34,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCoup
             취소 사유
           </Text>
           <Spacer height={10} />
-
+          <SelectDropDown menuItems={['단순변심', '배송지연', '주문실수', '서비스 불만족']} />
           <Spacer height={12} />
           <Text $fontType="H3" color="white">
             상세 사유 &#40;선택&#41;
