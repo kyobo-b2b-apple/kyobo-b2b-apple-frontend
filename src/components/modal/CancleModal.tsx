@@ -28,6 +28,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
     const answer = confirm(reason + ':' + reasonTitle);
 
     if (answer) {
+      setReason('');
       modalClose();
     }
   };
