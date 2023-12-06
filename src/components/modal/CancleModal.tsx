@@ -42,7 +42,11 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
             취소 사유
           </Text>
           <Spacer height={10} />
-          <SelectDropDown menuItems={['단순변심', '배송지연', '주문실수', '서비스 불만족']} setTitle={setReasonTitle} />
+          <SelectDropDown
+            menuItems={['단순변심', '배송지연', '주문실수', '서비스 불만족']}
+            setTitle={setReasonTitle}
+            selectTitle="취소 사유 선택"
+          />
           <Spacer height={12} />
           <Text $fontType="H3" color="white">
             상세 사유 &#40;선택&#41;

@@ -9,6 +9,7 @@ import { useState } from 'react';
 interface SelectProps {
   menuItems: string[];
   setTitle: (item: string) => void;
+  selectTitle: string;
 }
 
 interface ListboxProps {
@@ -19,9 +20,9 @@ interface ListboxOptionProps {
   isLast: boolean;
 }
 
-const SelectDropDown: React.FC<SelectProps> = ({ menuItems, setTitle }) => {
+const SelectDropDown: React.FC<SelectProps> = ({ menuItems, setTitle, selectTitle }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState('취소 사유 선택');
+  const [selected, setSelected] = useState(selectTitle);
 
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
