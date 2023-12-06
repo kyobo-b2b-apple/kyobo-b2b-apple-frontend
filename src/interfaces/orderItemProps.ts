@@ -10,7 +10,9 @@ export interface OrderItemListProps {
   orderState: string;
   productAmount?: number;
   updatedAt: number[];
+  reviewId: number;
 }
+//reviewId 속성 추가함 : 리뷰 유무에 따른 버튼 텍스트 지정 위해서
 
 export interface OrderItemProps {
   id: number;
@@ -36,4 +38,7 @@ export interface OrderCardProps {
   item: OrderItemProps;
   date: string;
   orderCode: string;
+  reviewId: number;
 }
+
+//reviewId 타입 추가
