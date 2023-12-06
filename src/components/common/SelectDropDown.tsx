@@ -39,7 +39,7 @@ const SelectDropDown: React.FC<SelectProps> = ({ menuItems, setTitle }) => {
         <Text $fontType="Body05" color="grey20">
           {selected}
         </Text>
-        <DownBtn type="submit">
+        <DownBtn type="submit" onClick={handleButtonClick}>
           {isOpen ? (
             <Image src={pageup} alt="up" height="15px" width="15px" />
           ) : (
