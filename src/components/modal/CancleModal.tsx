@@ -24,8 +24,12 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
 
   const handleSubmit = () => {
     onCancleSubmit([reason, reasonTitle]);
-    alert(reason + ':' + reasonTitle);
-    modalClose();
+
+    const answer = confirm(reason + ':' + reasonTitle);
+
+    if (answer) {
+      modalClose();
+    }
   };
 
   return (
