@@ -18,12 +18,10 @@ const StyledTextArea = styled.textarea<TextAreaProps>`
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
   background-color: ${(props) => props.theme.color.grey90};
-  color: ${(props) => props.theme.color.white};
+  color: ${(props) => props.color || props.theme.color.white};
   border-radius: 8px;
   border: 0;
   resize: none;
-  font-family: inherit;
-  font-size: inherit;
 
   &::placeholder {
     font-weight: 400;
