@@ -28,8 +28,13 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
     const answer = confirm(reason + ':' + reasonTitle);
 
     if (answer) {
-      setReason('');
-      modalClose();
+      if (reasonTitle === '') {
+        alert('취소 사유를 선택해주세요.');
+      } else {
+        setReason('');
+        setReasonTitle('');
+        modalClose();
+      }
     }
   };
 
