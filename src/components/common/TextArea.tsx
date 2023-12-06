@@ -7,16 +7,8 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   padding: string;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ width, height, padding, placeholder, maxLength }) => {
-  return (
-    <StyledTextArea
-      width={width}
-      height={height}
-      padding={padding}
-      placeholder={placeholder}
-      maxLength={maxLength}
-    ></StyledTextArea>
-  );
+const TextArea: React.FC<TextAreaProps> = ({ width, height, ...rest }) => {
+  return <StyledTextArea width={width} height={height} {...rest}></StyledTextArea>;
 };
 
 export default TextArea;

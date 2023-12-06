@@ -15,6 +15,8 @@ interface OrderListButtonsProps {
 const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [form, setForm] = useState(['', '']);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -37,7 +39,7 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
           {orderButtonText[1]}
         </GeneralButton>
       </GeneralWrapper>
-      <CancleModal modalOpen={isModalOpen} modalClose={handleCloseModal} onCouponSubmit={() => {}} />
+      <CancleModal modalOpen={isModalOpen} modalClose={handleCloseModal} onCancleSubmit={setForm} />
     </ButtonListWrapper>
   );
 };
