@@ -1,54 +1,36 @@
 import styled from 'styled-components';
-import Text from './Text';
+import { PropsWithChildren } from 'react';
+import theme from '../../styles/theme';
 
-interface TextBoxProps {
+interface TextBoxProps extends PropsWithChildren {
   width?: string;
   height?: string;
-  inputString: string[];
+  bgColor?: keyof typeof theme.color | string;
 }
 
 interface StyledTextBoxProps {
   width?: string;
   height?: string;
+  color?: keyof typeof theme.color | string;
 }
 
-const TextBox: React.FC<TextBoxProps> = ({ inputString, width, height }) => {
+const TextBox = (props: TextBoxProps) => {
+  const { children, width, height, bgColor } = props;
+
   return (
-    <StyledTextBox width={width} height={height}>
-      <StyledList className="dashed">
-        {inputString.map((e, idx) => (
-          <li key={idx}>{e}</li>
-        ))}
-      </StyledList>
+    <StyledTextBox width={width} height={height} color={bgColor}>
+      {children}
     </StyledTextBox>
   );
 };
 
 export default TextBox;
 
-const StyledTextBox = styled.div<StyledTextBoxProps>`
+const StyledTextBox = styled.div.attrs<StyledTextBoxProps>((props) => props)`
   width: ${(props) => (props.width ? props.width : '320px')};
   height: ${(props) => (props.height ? props.height : '126px')};
-  background-color: ${(props) => props.theme.color.grey90};
+  background-color: ${(props) => (props.color ? theme.color[props.color] : theme.color.black)};
   overflow: auto;
   padding: 13px 16px;
   border-radius: 8px;
-`;
-
-const StyledList = styled.ul`
-  margin: 0;
-
-  &.dashed {
-    list-style-type: none;
-
-    > li {
-      text-indent: -5px;
-      color: ${(props) => props.theme.color.grey50};
-
-      &:before {
-        content: '- ';
-        text-indent: -5px;
-      }
-    }
-  }
 `;
