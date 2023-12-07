@@ -31,7 +31,7 @@ const PrimaryBtn = styled.button<{ width?: string | number }>`
   ${CommonBtnStyle}
   background: ${(props) => props.theme.color.blue};
   color: ${(props) => props.theme.color.white};
-  border: 0;
+  border: 1px solid ${(props) => props.theme.color.blue};
 `;
 
 const SecondaryBtn = styled.button<{ width?: string | number }>`
