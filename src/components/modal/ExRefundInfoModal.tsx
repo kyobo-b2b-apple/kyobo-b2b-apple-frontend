@@ -51,7 +51,13 @@ const ExRefundInfoModal: React.FC<RefundProps> = ({ modalOpen, inputString, moda
       <CommonButton
         width={'100%'}
         type={isCheck ? ButtonType.Primary : ButtonType.Secondary}
-        onClick={() => onSubmit()}
+        onClick={() => {
+          if (isCheck) {
+            onSubmit();
+          } else {
+            alert('동의가 필요합니다.');
+          }
+        }}
       >
         확인
       </CommonButton>
