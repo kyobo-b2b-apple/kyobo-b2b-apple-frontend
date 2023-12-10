@@ -1,8 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CommonButton, { ButtonType } from '../../common/Button';
 import { MediumButton03, MediumButton04, MediumButton05 } from '../../../styles/buttonStyle';
 import CancleModal from '../../../components/modal/CancleModal';
+import ExRefundApplyModal from '../../modal/ExRefundApplyModal';
+import ExRefundInfoModal from '../../modal/ExRefundInfoModal';
 
 interface OrderListButtonsProps {
   orderButtonText: string[];
@@ -13,16 +15,37 @@ interface OrderListButtonsProps {
 //reviewId는 타입 추가
 
 const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCancleOpen, setIsCancleOpen] = useState(false);
+  const [isRefundInfoOpen, setIsRefundInfoOpen] = useState(false);
+  const [isRefundApplyOpen, setIsRefundApplyOpen] = useState(false);
 
   const [form, setForm] = useState(['', '']);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
+  const handleCancleOpenModal = () => {
+    setIsCancleOpen(true);
+  };
+
+  const handleRefundInfoOpenModal = () => {
+    setIsRefundInfoOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    if (isCancleOpen) {
+      setIsCancleOpen(false);
+    } else if (isRefundInfoOpen) {
+      setIsRefundInfoOpen(false);
+    } else if (isRefundApplyOpen) {
+      setIsRefundApplyOpen(false);
+    }
+  };
+
+  const handleRefundInfpCloseModal = () => {
+    setIsRefundInfoOpen(false);
+    setIsRefundApplyOpen(true);
   };
 
   return (
@@ -32,14 +55,29 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
       </ShippingButton>
 
       <GeneralWrapper>
-        <GeneralButton type={ButtonType.Secondary} onClick={handleOpenModal}>
+        <GeneralButton
+          type={ButtonType.Secondary}
+          onClick={orderButtonText[0] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
+        >
           {orderButtonText[0]}
         </GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
           {orderButtonText[1]}
         </GeneralButton>
       </GeneralWrapper>
-      <CancleModal modalOpen={isModalOpen} modalClose={handleCloseModal} onCancleSubmit={setForm} />
+      <ExRefundApplyModal
+        modalOpen={isRefundApplyOpen}
+        modalClose={handleCloseModal}
+        setForm={setForm}
+        inputString={['dd']}
+      />
+      <ExRefundInfoModal
+        modalOpen={isRefundInfoOpen}
+        modalClose={handleCloseModal}
+        inputString={['dd']}
+        onSubmit={handleRefundInfpCloseModal}
+      />
+      <CancleModal modalOpen={isCancleOpen} modalClose={handleCloseModal} onCancleSubmit={setForm} />
     </ButtonListWrapper>
   );
 };
