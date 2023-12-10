@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Modal, { ModalType } from './Modal';
 import Text from '../common/Text';
@@ -17,23 +17,26 @@ export interface CouponModalProps {
 const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCancleSubmit }) => {
   const [reason, setReason] = useState('');
   const [reasonTitle, setReasonTitle] = useState('');
+  const reasonRef = useRef<HTMLTextAreaElement>(null);
 
   const handleInputChange = (event) => {
     setReason(event.target.value);
   };
 
   const handleSubmit = () => {
-    onCancleSubmit([reason, reasonTitle]);
-
-    const answer = confirm(reason + ':' + reasonTitle);
-
-    if (answer) {
-      if (reasonTitle === '') {
-        alert('취소 사유를 선택해주세요.');
+    if (reasonRef.current) {
+      if (reasonRef.current.value === '') {
+        alert('취소 사유를 선택해주십시오.');
       } else {
+        onCancleSubmit([reasonTitle, reasonRef.current.value]);
         setReason('');
-        setReasonTitle('');
         modalClose();
+
+        setTimeout(() => {
+          if (confirm('취소 신청이 완료되었습니다. 교환 내역 상세로 이동하시겠습니까?')) {
+            console.log('이동로직 구현');
+          }
+        }, 0);
       }
     }
   };
@@ -66,6 +69,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
             value={reason}
             onChange={(e) => handleInputChange(e)}
             maxLength={300}
+            ref={reasonRef}
           />
         </InputItemContainer>
         <Spacer height={10} />
