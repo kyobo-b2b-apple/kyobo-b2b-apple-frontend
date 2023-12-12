@@ -95,9 +95,9 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
               ))}
             </TextBox>
           </div>
-          {/* <CommonButton width={'100%'} type={ButtonType.Secondary} onClick={onClick}>
-         확인
-         </CommonButton> */}
+          <CommonButton width={'100%'} htmlType="submit" type={ButtonType.Secondary}>
+            확인
+          </CommonButton>
         </InputContainer>
       </form>
     </Modal>
