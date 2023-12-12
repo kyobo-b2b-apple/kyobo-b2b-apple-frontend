@@ -7,13 +7,13 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   padding: string;
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({ ...rest }, ref) => {
-  return <StyledTextArea ref={ref} {...rest}></StyledTextArea>;
+const StyledTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({ ...rest }, ref) => {
+  return <TextAreaStyle ref={ref} {...rest}></TextAreaStyle>;
 });
 
-export default TextArea;
+export default StyledTextArea;
 
-const StyledTextArea = styled.textarea<TextAreaProps>`
+const TextAreaStyle = styled.textarea<TextAreaProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
