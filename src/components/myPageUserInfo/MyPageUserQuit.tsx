@@ -13,12 +13,8 @@ import { PersonalFormData } from '../join/personalForm/JoinPersonalForm';
 import PersonalInputCompnent from '../join/personalForm/PersonalInputComponent';
 import { info, quitReason } from '../../constants/quitInfo';
 
-interface QuitFormType extends PersonalFormData {
-  quitTitle: string;
-  quitReason: string;
-}
-
 const QuitForm = () => {
+  const reasonRef = useRef<HTMLTextAreaElement>(null);
   const [quit, setQuit] = useState<string>('');
   const isValidId = (value: any) => /^[A-Za-z0-9\s]+$/.test(value);
   const [isCheck, setIsCheck] = useState(false);
@@ -28,10 +24,24 @@ const QuitForm = () => {
   };
 
   const onSubmit = (data: PersonalFormData) => {
+    const formData = new FormData();
+
     if (!isCheck) {
       alert('동의가 필요합니다.');
     } else {
       console.log(data);
+
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+      formData.append('quitTitle', quit);
+      if (reasonRef.current) {
+        // reasonRef.current 사용
+        formData.append('quitContent', reasonRef.current.value);
+      } else {
+        formData.append('quitContent', '상세 사유 없음');
+      }
+      console.log(Object.fromEntries(formData));
     }
   };
 
@@ -110,9 +120,10 @@ const QuitForm = () => {
             placeholder="상세 사유를 입력해주세요(300자)"
             maxLength={300}
             background-color="grey90"
+            ref={reasonRef}
           />
         </FormContainer>
-        <CommonButton type={ButtonType.Primary} onClick={() => {}}>
+        <CommonButton type={ButtonType.Primary} htmlType="submit">
           확인
         </CommonButton>
       </QuitInputContainer>
