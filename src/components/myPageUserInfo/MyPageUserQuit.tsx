@@ -37,10 +37,11 @@ const QuitForm = () => {
       formData.append('quitTitle', quit);
       if (reasonRef.current) {
         // reasonRef.current 사용
-        formData.append('quitContent', reasonRef.current.value);
+        formData.append('detailReason', reasonRef.current.value);
       } else {
-        formData.append('quitContent', '상세 사유 없음');
+        formData.append('detailReason', '상세 사유 없음');
       }
+      formData.append('withdraw_agree_term1', 'true');
       console.log(Object.fromEntries(formData));
     }
   };
