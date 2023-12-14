@@ -55,7 +55,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
             />
             <Spacer height={12} />
             <Text $fontType="H3" color="white">
-              상세 사유 &#40;선택&#41;
+              상세 사유 (선택)
             </Text>
             <Spacer height={10} />
             <TextArea
