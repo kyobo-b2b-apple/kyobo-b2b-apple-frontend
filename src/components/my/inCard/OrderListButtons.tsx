@@ -22,7 +22,7 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
   const [form, setForm] = useState(['', '']);
 
   useEffect(() => {
-    console.log(form);
+    // console.log(form);
   }, [form]);
 
   const handleCancleOpenModal = () => {
