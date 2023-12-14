@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes } from 'react';
+import { TextareaHTMLAttributes, forwardRef } from 'react';
 import styled from 'styled-components';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -7,13 +7,7 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   padding: string;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ width, height, ...rest }) => {
-  return <StyledTextArea width={width} height={height} {...rest}></StyledTextArea>;
-};
-
-export default TextArea;
-
-const StyledTextArea = styled.textarea<TextAreaProps>`
+export const StyledTextArea = styled.textarea<TextAreaProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
