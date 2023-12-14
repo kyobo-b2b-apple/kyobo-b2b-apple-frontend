@@ -6,7 +6,7 @@ import Spacer from '../common/Spacer';
 import CommonButton, { ButtonType } from '../common/Button';
 import { InputStyle } from '../common/Input';
 import SelectDropDown from '../../components/common/SelectDropDown';
-import TextArea from '../../components/common/TextArea';
+import { StyledTextArea } from '../../components/common/TextArea';
 import TextBox from '../common/TextBox';
 
 export interface CouponModalProps {
@@ -58,7 +58,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
               상세 사유 (선택)
             </Text>
             <Spacer height={10} />
-            <TextArea
+            <StyledTextArea
               name="cancle"
               placeholder="상세 사유를 입력해주세요.(최대 300자)"
               width="100%"

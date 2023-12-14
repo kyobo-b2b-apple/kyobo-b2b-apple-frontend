@@ -1,6 +1,6 @@
 import Modal, { ModalType } from './Modal';
 import TextBox from '../common/TextBox';
-import TextArea from '../common/TextArea';
+import { StyledTextArea } from '../common/TextArea';
 import { Text } from '../common';
 import CommonButton, { ButtonType } from '../common/Button';
 import { Spacer } from '../common';
@@ -78,7 +78,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
               사유 입력(필수)
             </Text>
             <Spacer height={10} />
-            <TextArea
+            <StyledTextArea
               name="exRefund"
               placeholder="상세 사유를 입력해주세요.(최대 300자)"
               width="100%"
