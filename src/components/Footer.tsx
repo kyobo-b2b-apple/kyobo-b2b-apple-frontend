@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 import { Text } from './common';
 import ContentsLayout from '../layout/contentsWidthLayout';
 import { Link } from 'react-router-dom';
+import appleLogo from '../assets/Logo/AppleLogo.svg';
+import Image from './image/Image';
 
 const Footer = () => {
   const infoData = [
@@ -69,6 +71,9 @@ const Footer = () => {
                   (상담시간 AM 9:00 - PM 6:00)
                 </Text>
               </div>
+              <LogoContainer>
+                <img src={appleLogo} alt="appleLogo" />
+              </LogoContainer>
             </RightInfo>
           </InfoContainer>
         </FooterContainer>
@@ -80,7 +85,7 @@ const Footer = () => {
 export default Footer;
 
 export const FooterContainer = styled.div`
-   @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     padding: 34px 0px 80px 0px;
   }
   @media screen and (min-width: 480px) and (max-width: 767px) {
@@ -95,7 +100,7 @@ const LinkContainer = styled.div`
   display: flex;
   gap: 0px 16px;
 
-   @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     margin-bottom: 54px;
   }
   @media screen and (min-width: 480px) and (max-width: 767px) {
@@ -143,3 +148,5 @@ const CopyText = styled(Text)`
   line-height: 22px;
   margin-top: 5px;
 `;
+
+const LogoContainer = styled.div``;
