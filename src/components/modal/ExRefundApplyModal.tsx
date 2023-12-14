@@ -22,7 +22,7 @@ enum ClaimStatus {
 }
 
 const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modalClose, inputString }) => {
-  const [cancleType, setCancleType] = useState(ClaimStatus.EXCHANGE);
+  const [cancleType, setCancleType] = useState<ClaimStatus>(ClaimStatus.EXCHANGE);
 
   const handleCancleTypeChange = (value) => {
     setCancleType(value);
@@ -56,13 +56,13 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
                 value={ClaimStatus.EXCHANGE}
                 label={ClaimStatus.EXCHANGE}
                 onSelect={handleCancleTypeChange}
-                checked={cancleType === '교환'}
+                checked={cancleType === ClaimStatus.EXCHANGE}
               />
               <RadioButton
                 value={ClaimStatus.REFUND}
                 label={ClaimStatus.REFUND}
                 onSelect={handleCancleTypeChange}
-                checked={cancleType === '환불'}
+                checked={cancleType === ClaimStatus.REFUND}
               />
             </RadioContainer>
           </div>
