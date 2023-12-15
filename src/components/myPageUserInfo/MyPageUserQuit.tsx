@@ -1,7 +1,7 @@
 import TextBox from '../common/TextBox';
 import CommonButton, { ButtonType } from '../common/Button';
 import SelectDropDown from '../common/SelectDropDown';
-import TextArea from '../common/TextArea';
+import { StyledTextArea } from '../common/TextArea';
 import { InputStyle } from '../common/Input';
 import { Spacer, Text } from '../common';
 import { CheckBoxBtn } from '../common/CheckBoxBtn';
@@ -114,7 +114,7 @@ const QuitForm = () => {
           <Text $fontType="H3" color="white">
             탈퇴 사유(선택)
           </Text>
-          <TextArea
+          <StyledTextArea
             width="100%"
             height="162px"
             padding="13px"
