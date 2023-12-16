@@ -7,14 +7,30 @@ import ExRefundApplyModal from '../../modal/ExRefundApplyModal';
 import ExRefundInfoModal from '../../modal/ExRefundInfoModal';
 
 interface OrderListButtonsProps {
-  orderButtonText: string[];
+  orderState: string;
   handleShippingClick: () => void;
   handleReviewClick: () => void;
 }
 
 //reviewId는 타입 추가
 
-const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
+enum BtnString {
+  ORDER_RECEIVED = '주문 수락',
+  PREPARE_PRODUCT = '배송준비중',
+  DELIVERY_START = '배송시작',
+  IN_TRANSIT = '배송중',
+  DELIVERY_COMPLETED = '배달완료',
+}
+
+enum FirstBtnString {
+  ORDER_RECEIVED = '취소 요청',
+  PREPARE_PRODUCT = '취소 요청',
+  DELIVERY_START = '교환/환불 신청',
+  IN_TRANSIT = '교환/환불 신청',
+  DELIVERY_COMPLETED = '교환/환불 신청',
+}
+
+const OrderListButtons: FC<OrderListButtonsProps> = ({ orderState, handleShippingClick, handleReviewClick }) => {
   const [isCancleOpen, setIsCancleOpen] = useState(false);
   const [isRefundInfoOpen, setIsRefundInfoOpen] = useState(false);
   const [isRefundApplyOpen, setIsRefundApplyOpen] = useState(false);
@@ -57,12 +73,12 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleSh
       <GeneralWrapper>
         <GeneralButton
           type={ButtonType.Secondary}
-          onClick={orderButtonText[0] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
+          onClick={FirstBtnString[orderState] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
         >
-          {orderButtonText[0]}
+          {FirstBtnString[orderState]}
         </GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
-          {orderButtonText[1]}
+          후기 작성하기
         </GeneralButton>
       </GeneralWrapper>
       <ExRefundApplyModal
