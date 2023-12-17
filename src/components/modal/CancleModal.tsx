@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import styled from 'styled-components';
 import Modal, { ModalType } from './Modal';
 import Text from '../common/Text';
@@ -8,32 +8,60 @@ import { InputStyle } from '../common/Input';
 import SelectDropDown from '../../components/common/SelectDropDown';
 import { StyledTextArea } from '../../components/common/TextArea';
 import TextBox from '../common/TextBox';
+import { cancleProductAPi } from '../../api/cancleModalApi';
+import { useNavigate } from 'react-router-dom';
 
 export interface CouponModalProps {
   modalOpen: boolean;
   modalClose: () => void;
   onCancleSubmit: (cancleReason: string[]) => void;
+  orderId: number;
 }
 
-const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCancleSubmit }) => {
-  const [reason, setReason] = useState('');
-  const [reasonTitle, setReasonTitle] = useState('');
+const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCancleSubmit, orderId }) => {
+  const [reasonTitle, setReasonTitle] = useState<string>('');
   const reasonRef = useRef<HTMLTextAreaElement>(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  //여기서 api 호출할거니까
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
     if (reasonRef.current) {
       if (reasonRef.current.value === '') {
         alert('취소 사유를 선택해주십시오.');
       } else {
         onCancleSubmit([reasonTitle, reasonRef.current.value]);
-        setReason('');
-        modalClose();
 
-        setTimeout(() => {
-          if (confirm('취소 신청이 완료되었습니다. 교환 내역 상세로 이동하시겠습니까?')) {
-            console.log('이동로직 구현');
+        try {
+          const response = await cancleProductAPi(
+            { cancelReason: reasonTitle, content: reasonRef.current.value },
+            orderId,
+          );
+          if (response.status === 200) {
+            const { accessToken } = response.data.result;
+            localStorage.setItem('accessToken', accessToken);
+            modalClose();
+
+            setTimeout(() => {
+              if (confirm('취소 신청이 완료되었습니다. 취소 내역 상세로 이동하시겠습니까?')) {
+                navigate('/my-page/defnru - history');
+              }
+            }, 0);
           }
-        }, 0);
+        } catch (error: any) {
+          console.error(error.response);
+          alert('오류가 발생하여 취소에 실패했습니다. 다시 시도해주십시오.');
+          setReasonTitle('');
+          modalClose();
+          if (error.response && error.response.status === 400) {
+            //400오류 발생시
+          } else {
+            //서버 오류 발생
+            console.log(error);
+          }
+        }
       }
     }
   };
@@ -53,6 +81,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
               setTitle={setReasonTitle}
               selectTitle="취소 사유 선택"
             />
+            <InputStyle type="hidden" value={reasonTitle} />
             <Spacer height={12} />
             <Text $fontType="H3" color="white">
               상세 사유 (선택)
