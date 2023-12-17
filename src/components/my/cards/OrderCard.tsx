@@ -11,13 +11,10 @@ import CardContent from '../inCard/CardContent';
 import LeftContentImage from '../inCard/LeftContentImage';
 import RightContent from '../inCard/RightContent';
 import { OrderCardProps } from '../../../interfaces/orderItemProps';
-import { useEffect, useState } from 'react';
 
-const OrderCard = ({ item, date, orderCode, orderState }: OrderCardProps) => {
+const OrderCard = ({ item, date, orderCode, orderState, orderId }: OrderCardProps) => {
   const isMobile = useIsOS(OS.MOBILE);
   const navigate = useNavigate();
-  const [orderButtonText, setOrder] = useState('취소 요청');
-  const [reviewButtonText, setReview] = useState('후기 작성하기');
 
   const handleShowDetailClick = (orderCode: string) => {
     navigate(`/my-page/order-detail/${orderCode}`);
@@ -47,6 +44,7 @@ const OrderCard = ({ item, date, orderCode, orderState }: OrderCardProps) => {
               orderState={orderState}
               handleShippingClick={() => handleShippingClick(orderCode)}
               handleReviewClick={handleReviewClick}
+              orderId={orderId}
             />
           )}
         </RightContent>
@@ -57,6 +55,7 @@ const OrderCard = ({ item, date, orderCode, orderState }: OrderCardProps) => {
           orderState={orderState}
           handleShippingClick={() => handleShippingClick(orderCode)}
           handleReviewClick={handleReviewClick}
+          orderId={orderId}
         />
       )}
     </Card>
