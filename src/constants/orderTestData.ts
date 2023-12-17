@@ -33,7 +33,6 @@ export interface OrderItemListProps {
   orderState: string;
   productAmount?: number;
   updatedAt: number[];
-  reviewId: number;
 }
 
 const exOrderItems: OrderItemProps[] = [
@@ -64,7 +63,6 @@ const orderTestData: OrderItemListProps[] = [
     orderState: 'PREPARE_PRODUCT',
     productAmount: 9880000,
     updatedAt: [2023, 8, 31, 7, 57, 15],
-    reviewId: -1,
   },
   {
     createdAt: [2023, 8, 31, 7, 56, 53],
@@ -75,10 +73,9 @@ const orderTestData: OrderItemListProps[] = [
     orderAmount: 9882500,
     orderCode: '2023083141',
     orderItems: exOrderItems,
-    orderState: 'PREPARE_PRODUCT',
+    orderState: 'DELIVERY_START',
     productAmount: 9880000,
     updatedAt: [2023, 8, 31, 7, 57, 15],
-    reviewId: 2,
   },
 ];
 export default orderTestData;

@@ -46,7 +46,6 @@ const exRefundData: OrderItemListProps[] = [
     orderState: 'PREPARE_PRODUCT',
     productAmount: 9880000,
     updatedAt: [2023, 8, 31, 7, 57, 15],
-    reviewId: 1,
   },
 ];
 

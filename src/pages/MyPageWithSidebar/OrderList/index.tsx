@@ -55,7 +55,7 @@ const OrderList = () => {
             item={content.orderItems[0]}
             date={formatDate(content.createdAt)}
             orderCode={content.orderCode}
-            reviewId={content.reviewId}
+            orderState={content.orderState}
           />
         ))}
       </CardList>
