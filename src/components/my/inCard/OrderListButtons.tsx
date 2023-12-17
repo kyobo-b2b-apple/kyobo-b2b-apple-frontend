@@ -12,16 +12,6 @@ interface OrderListButtonsProps {
   handleReviewClick: () => void;
 }
 
-//reviewId는 타입 추가
-
-enum BtnString {
-  ORDER_RECEIVED = '주문 수락',
-  PREPARE_PRODUCT = '배송준비중',
-  DELIVERY_START = '배송시작',
-  IN_TRANSIT = '배송중',
-  DELIVERY_COMPLETED = '배달완료',
-}
-
 enum FirstBtnString {
   ORDER_RECEIVED = '취소 요청',
   PREPARE_PRODUCT = '취소 요청',
@@ -44,24 +34,20 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderState, handleShippin
   const handleCancleOpenModal = () => {
     setIsCancleOpen(true);
   };
+  const handleCancleCloseModal = () => {
+    setIsCancleOpen(false);
+  };
 
   const handleRefundInfoOpenModal = () => {
     setIsRefundInfoOpen(true);
   };
-
-  const handleCloseModal = () => {
-    if (isCancleOpen) {
-      setIsCancleOpen(false);
-    } else if (isRefundInfoOpen) {
-      setIsRefundInfoOpen(false);
-    } else if (isRefundApplyOpen) {
-      setIsRefundApplyOpen(false);
-    }
-  };
-
-  const handleRefundInfpCloseModal = () => {
+  const handleRefundInfoCloseModal = () => {
     setIsRefundInfoOpen(false);
     setIsRefundApplyOpen(true);
+  };
+
+  const handleRefundApplyCloseModal = () => {
+    setIsRefundApplyOpen(false);
   };
 
   return (
@@ -81,19 +67,23 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderState, handleShippin
           후기 작성하기
         </GeneralButton>
       </GeneralWrapper>
-      <ExRefundApplyModal
-        modalOpen={isRefundApplyOpen}
-        modalClose={handleCloseModal}
-        setForm={setForm}
-        inputString={['dd']}
-      />
-      <ExRefundInfoModal
-        modalOpen={isRefundInfoOpen}
-        modalClose={handleCloseModal}
-        inputString={['dd']}
-        onSubmit={handleRefundInfpCloseModal}
-      />
-      <CancleModal modalOpen={isCancleOpen} modalClose={handleCloseModal} onCancleSubmit={setForm} />
+      {FirstBtnString[orderState] === '취소 요청' ? (
+        <CancleModal modalOpen={isCancleOpen} modalClose={handleCancleCloseModal} onCancleSubmit={setForm} />
+      ) : (
+        <>
+          <ExRefundApplyModal
+            modalOpen={isRefundApplyOpen}
+            modalClose={handleRefundApplyCloseModal}
+            setForm={setForm}
+            inputString={['dd']}
+          />
+          <ExRefundInfoModal
+            modalOpen={isRefundInfoOpen}
+            modalClose={handleRefundInfoCloseModal}
+            inputString={['dd']}
+          />
+        </>
+      )}
     </ButtonListWrapper>
   );
 };
