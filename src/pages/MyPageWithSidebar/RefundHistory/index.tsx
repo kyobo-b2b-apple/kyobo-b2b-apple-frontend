@@ -57,6 +57,7 @@ const RefundHistory = () => {
             date={formatDate(content.createdAt)}
             orderCode={content.orderCode}
             orderState={content.orderState}
+            orderId={content.id}
           />
         ))}
       </CardList>
