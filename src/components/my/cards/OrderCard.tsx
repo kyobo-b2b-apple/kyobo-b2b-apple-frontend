@@ -12,7 +12,7 @@ import LeftContentImage from '../inCard/LeftContentImage';
 import RightContent from '../inCard/RightContent';
 import { OrderCardProps } from '../../../interfaces/orderItemProps';
 
-const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
+const OrderCard = ({ item, date, orderCode, orderState, orderId }: OrderCardProps) => {
   const isMobile = useIsOS(OS.MOBILE);
   const navigate = useNavigate();
 
@@ -41,9 +41,10 @@ const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
           <OptionText text={`옵션 : ${item.product.acpOption}`} />
           {!isMobile && (
             <OrderListButtons
-              orderButtonText="후기 작성하기"
+              orderState={orderState}
               handleShippingClick={() => handleShippingClick(orderCode)}
               handleReviewClick={handleReviewClick}
+              orderId={orderId}
             />
           )}
         </RightContent>
@@ -51,9 +52,10 @@ const OrderCard = ({ item, date, orderCode }: OrderCardProps) => {
 
       {isMobile && (
         <OrderListButtons
-          orderButtonText="후기 작성하기"
+          orderState={orderState}
           handleShippingClick={() => handleShippingClick(orderCode)}
           handleReviewClick={handleReviewClick}
+          orderId={orderId}
         />
       )}
     </Card>
