@@ -68,7 +68,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
           </div>
           <div>
             <Text $fontType="H3" color="white">
-              사유 입력(필수)
+              상품 선택
             </Text>
             <Spacer height={10} />
             {/* <SelectDropDown menuItems, setTitle, selectTitle={"상품을 선택해주세요."}/> */}

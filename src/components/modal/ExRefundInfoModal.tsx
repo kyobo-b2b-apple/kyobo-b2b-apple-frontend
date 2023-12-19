@@ -29,8 +29,6 @@ const ExRefundInfoModal: React.FC<RefundProps> = ({ modalOpen, inputString, moda
 
     modalClose();
     setIsCheck(false);
-
-    onSubmit();
   };
 
   return (
