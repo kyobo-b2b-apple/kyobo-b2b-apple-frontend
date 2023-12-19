@@ -18,16 +18,16 @@ const ExRefundInfoModal: React.FC<RefundProps> = ({ modalOpen, inputString, moda
   const infoTitle = ['공통 안내사항', '애플 안내사항', '교환,반품이 불가능한 경우'];
 
   const checkBoxClick = () => {
-    setIsCheck(!isCheck);
+    setIsCheck((prev) => !prev);
   };
 
   const onClick = () => {
-    if (isCheck) {
-      modalClose();
-      setIsCheck(false);
-    } else {
-      alert('동의가 필요합니다.');
+    if (!isCheck) {
+      return alert('동의가 필요합니다.');
     }
+
+    modalClose();
+    setIsCheck(false);
   };
 
   return (
