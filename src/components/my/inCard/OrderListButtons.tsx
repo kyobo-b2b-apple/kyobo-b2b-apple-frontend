@@ -47,7 +47,12 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
   const handleRefundInfoOpenModal = () => {
     setIsRefundInfoOpen(true);
   };
+
   const handleRefundInfoCloseModal = () => {
+    setIsRefundInfoOpen(false);
+  };
+
+  const handleRefundInfoSubmitModal = () => {
     setIsRefundInfoOpen(false);
     setIsRefundApplyOpen(true);
   };
@@ -72,7 +77,8 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
           후기 작성하기
         </GeneralButton>
-      {FirstBtnString[orderState] === '취소 요청' ? (
+      </GeneralWrapper>
+      {FirstBtnText[orderState] === '취소 요청' ? (
         <CancleModal
           modalOpen={isCancleOpen}
           modalClose={handleCancleCloseModal}
@@ -90,6 +96,7 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
           <ExRefundInfoModal
             modalOpen={isRefundInfoOpen}
             modalClose={handleRefundInfoCloseModal}
+            onSubmit={handleRefundInfoSubmitModal}
             inputString={['dd']}
           />
         </>
