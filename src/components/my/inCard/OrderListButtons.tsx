@@ -53,7 +53,6 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
   };
 
   const handleRefundInfoSubmitModal = () => {
-    setIsRefundInfoOpen(false);
     setIsRefundApplyOpen(true);
   };
 

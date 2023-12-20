@@ -29,6 +29,8 @@ const ExRefundInfoModal: React.FC<RefundProps> = ({ modalOpen, inputString, moda
 
     modalClose();
     setIsCheck(false);
+
+    onSubmit();
   };
 
   return (
@@ -57,7 +59,7 @@ const ExRefundInfoModal: React.FC<RefundProps> = ({ modalOpen, inputString, moda
         </Text>
       </CheckBoxBtnContainer>
       <Spacer height={10} />
-      <CommonButton width={'100%'} type={isCheck ? ButtonType.Primary : ButtonType.Secondary} onClick={onSubmit}>
+      <CommonButton width={'100%'} type={isCheck ? ButtonType.Primary : ButtonType.Secondary} onClick={onClick}>
         확인
       </CommonButton>
     </Modal>
