@@ -7,13 +7,16 @@ import { Spacer } from '../common';
 import { useRef, useState } from 'react';
 import RadioButton from '../common/RadioButton';
 import styled from 'styled-components';
-import SelectDropDown from '../common/SelectDropDown';
+import { ItemsContent } from '../common/CheckDropDown';
+import { CheckBoxBtn } from '../common/CheckBoxBtn';
+import CheckDropDown from '../common/CheckDropDown';
 
 interface ExRefundProps {
   setForm: (input: string[]) => void;
   modalOpen: boolean;
   inputString: string[];
   modalClose: () => void;
+  menuItems: ItemsContent[];
 }
 
 enum ClaimStatus {
@@ -21,8 +24,9 @@ enum ClaimStatus {
   REFUND = '환불',
 }
 
-const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modalClose, inputString }) => {
+const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, setForm, modalOpen, modalClose, inputString }) => {
   const [cancleType, setCancleType] = useState<ClaimStatus>(ClaimStatus.EXCHANGE);
+  const itemRef = useRef<HTMLDivElement>(null);
 
   const handleCancleTypeChange = (value) => {
     setCancleType(value);
@@ -35,6 +39,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
     const formData = new FormData(e.currentTarget);
     console.log(formData.get('exRefund'));
     formData.append('cancleType', cancleType);
+    console.log('ddd?' + itemRef.current);
     const data = Object.fromEntries(formData);
     console.log('data', data);
 
@@ -71,7 +76,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ setForm, modalOpen, modal
               상품 선택
             </Text>
             <Spacer height={10} />
-            {/* <SelectDropDown menuItems, setTitle, selectTitle={"상품을 선택해주세요."}/> */}
+            <CheckDropDown setItems={() => {}} menuItems={menuItems} title={'상품을 선택해주세요.'} />
           </div>
           <div>
             <Text $fontType="H3" color="white">

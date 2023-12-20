@@ -91,6 +91,11 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
             modalClose={handleRefundApplyCloseModal}
             setForm={setForm}
             inputString={['dd']}
+            menuItems={[
+              { id: 1, description: 'test1' },
+              { id: 2, description: 'test2' },
+              { id: 3, description: 'test3' },
+            ]}
           />
           <ExRefundInfoModal
             modalOpen={isRefundInfoOpen}
