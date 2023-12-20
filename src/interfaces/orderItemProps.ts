@@ -38,4 +38,5 @@ export interface OrderCardProps {
   date: string;
   orderCode: string;
   orderState: string;
+  orderId: number;
 }

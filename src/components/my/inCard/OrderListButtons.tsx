@@ -10,6 +10,7 @@ interface OrderListButtonsProps {
   orderState: string;
   handleShippingClick: () => void;
   handleReviewClick: () => void;
+  orderId: number;
 }
 
 enum FirstBtnText {
@@ -20,7 +21,12 @@ enum FirstBtnText {
   DELIVERY_COMPLETED = '교환/환불 신청',
 }
 
-const OrderListButtons: FC<OrderListButtonsProps> = ({ orderState, handleShippingClick, handleReviewClick }) => {
+const OrderListButtons: FC<OrderListButtonsProps> = ({
+  orderId,
+  orderState,
+  handleShippingClick,
+  handleReviewClick,
+}) => {
   const [isCancleOpen, setIsCancleOpen] = useState(false);
   const [isRefundInfoOpen, setIsRefundInfoOpen] = useState(false);
   const [isRefundApplyOpen, setIsRefundApplyOpen] = useState(false);
@@ -66,9 +72,13 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({ orderState, handleShippin
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
           후기 작성하기
         </GeneralButton>
-      </GeneralWrapper>
-      {FirstBtnText[orderState] === '취소 요청' ? (
-        <CancleModal modalOpen={isCancleOpen} modalClose={handleCancleCloseModal} onCancleSubmit={setForm} />
+      {FirstBtnString[orderState] === '취소 요청' ? (
+        <CancleModal
+          modalOpen={isCancleOpen}
+          modalClose={handleCancleCloseModal}
+          onCancleSubmit={setForm}
+          orderId={orderId}
+        />
       ) : (
         <>
           <ExRefundApplyModal
