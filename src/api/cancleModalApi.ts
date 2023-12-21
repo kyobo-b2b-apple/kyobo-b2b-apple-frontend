@@ -7,7 +7,7 @@ interface CancleContent {
 
 export const cancleProductAPi = async (orderId: number, body: CancleContent) => {
   console.log('api호출: ' + body);
-  return axiosInstance.post(`/api/orders/${orderId}/cancel`, { body });
+  return axiosInstance.post(`/api/orders/${orderId}/cancel`, body);
 };
 
 export const getCancleDetailAPi = async (cancelCode: string) => {
