@@ -1,6 +1,4 @@
 import React, { useState, useRef, FormEvent, useEffect } from 'react';
-import styled from 'styled-components';
-import Modal, { ModalType } from './Modal';
 import Text from '../common/Text';
 import Spacer from '../common/Spacer';
 import CommonButton, { ButtonType } from '../common/Button';
