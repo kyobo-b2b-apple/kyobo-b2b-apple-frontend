@@ -17,10 +17,6 @@ interface ListboxProps {
   isOpen: boolean;
 }
 
-interface ListboxOptionProps {
-  isLast: boolean;
-}
-
 export interface ItemsContent {
   id: number;
   description: string;
@@ -83,14 +79,14 @@ const Dropdown: React.FC<CheckDropDownProps> = ({ menuItems, title, setItems, ..
         </DownBtn>
       </ListboxTitleContainer>
       <Listbox isOpen={isOpen}>
-        <DropdownItem>
+        <ListboxOption>
           <CheckBoxBtn onChange={handleAllCheck} checked={numChecked === menuItems.length} />
           <Text $fontType="Body05" color="white">
             전체선택
           </Text>
-        </DropdownItem>
+        </ListboxOption>
         {menuItems.map((data, idx) => (
-          <ListboxOption key={data.id} isLast={idx === menuItems.length - 1}>
+          <ListboxOption key={data.id}>
             <CheckBoxBtn
               key={data.id}
               onChange={(e) => handleCheckChange(e, data.id)}
@@ -120,19 +116,22 @@ const Listbox = styled.div<ListboxProps>`
   width: 100%;
 `;
 
-const ListboxOption = styled.div<ListboxOptionProps>`
+const ListboxOption = styled.div`
   display: flex;
   padding: 13px 16px;
   gap: 10px;
   align-items: center;
   cursor: pointer;
   border-top: 1px solid ${(props) => props.theme.color.grey60};
-  background-color: ${(props) => props.theme.color.grey90};
+  background-color: ${(props) => props.theme.color.grey80};
   height: 46px;
-  border-radius: ${({ isLast }) => (isLast ? '0 0 8px 8px' : '0')};
 
   &:hover {
     background-color: ${(props) => props.theme.color.grey60};
+  }
+
+  &:last-child {
+    border-radius: 0 0 8px 8px;
   }
 `;
 
@@ -149,19 +148,4 @@ const ListboxTitleContainer = styled.div<ListboxProps>`
 
 const DownBtn = styled.div`
   background: none;
-`;
-
-const DropdownItem = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  cursor: pointer;
-  padding: 13px 16px;
-  border-top: 1px solid ${(props) => props.theme.color.grey60};
-  background-color: ${(props) => props.theme.color.grey90};
-  height: 46px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.color.grey60};
-  }
 `;
