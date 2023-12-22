@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Image from '../image/Image';
 import Text from './Text';
 import pagedown from '../../assets/img/floating/ic_float_pagedown.png';
 import pageup from '../../assets/img/floating/ic_float_pageup.png';
 import { CheckBoxBtn } from './CheckBoxBtn';
+import { useFormContext } from 'react-hook-form';
 
 interface CheckDropDownProps {
   menuItems: ItemsContent[];
@@ -27,27 +28,43 @@ export interface ItemsContent {
 
 const Dropdown: React.FC<CheckDropDownProps> = ({ menuItems, title, setItems, ...rest }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [checkItems, setCheckedItem] = useState<number[]>([]);
+  const [checkItems, setCheckedItem] = useState(new Set());
+  const numChecked = checkItems.size;
+  const { setValue } = useFormContext();
 
   const handleButtonClick = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const handleItemClick = (checked: boolean, id: number) => {
-    if (checked) {
-      setCheckedItem((prev) => [...prev, id]);
+  //체크박스 개별 선택 로직 함수
+  const updateSet = (set, id) => {
+    const updatedSet = new Set(set);
+
+    if (updatedSet.has(id)) {
+      updatedSet.delete(id);
     } else {
-      setCheckedItem(checkItems.filter((e) => e !== id));
+      updatedSet.add(id);
     }
+
+    return updatedSet;
+  };
+
+  useEffect(() => {
+    setValue('items', Array.from(checkItems));
+  }, [checkItems, setValue]);
+
+  //체크박스 개별 선택
+  const handleCheckChange = (e: React.FormEvent<HTMLInputElement>, id: number) => {
+    setCheckedItem((prevSet) => updateSet(prevSet, id));
   };
 
   // 체크박스 전체 선택
-  const handleAllCheck = (checked: boolean) => {
-    if (checked) {
-      const idArray: number[] = menuItems.map((el) => el.id);
-      setCheckedItem(idArray);
+  const handleAllCheck = (e: React.FormEvent<HTMLInputElement>) => {
+    if (e.currentTarget.checked) {
+      const allChecked = new Set(menuItems.map(({ id }) => id));
+      setCheckedItem(allChecked);
     } else {
-      setCheckedItem([]);
+      setCheckedItem(new Set());
     }
   };
 
@@ -55,7 +72,7 @@ const Dropdown: React.FC<CheckDropDownProps> = ({ menuItems, title, setItems, ..
     <Container>
       <ListboxTitleContainer isOpen={isOpen} onClick={handleButtonClick}>
         <Text $fontType="Body05" color="grey20">
-          {checkItems.length === 0 ? title : `${checkItems.length}개의 상품 선택됨`}
+          {numChecked ? `${numChecked}개 선택됨` : title}
         </Text>
         <DownBtn onClick={handleButtonClick}>
           {isOpen ? (
@@ -67,13 +84,7 @@ const Dropdown: React.FC<CheckDropDownProps> = ({ menuItems, title, setItems, ..
       </ListboxTitleContainer>
       <Listbox isOpen={isOpen}>
         <DropdownItem>
-          <CheckBoxBtn
-            name="selectall"
-            onChange={(e) => {
-              handleAllCheck(e.target.checked);
-            }}
-            checked={checkItems.length === menuItems.length ? true : false}
-          />
+          <CheckBoxBtn onChange={handleAllCheck} checked={numChecked === menuItems.length} />
           <Text $fontType="Body05" color="white">
             전체선택
           </Text>
@@ -81,9 +92,9 @@ const Dropdown: React.FC<CheckDropDownProps> = ({ menuItems, title, setItems, ..
         {menuItems.map((data, idx) => (
           <ListboxOption key={data.id} isLast={idx === menuItems.length - 1}>
             <CheckBoxBtn
-              name="selectItem"
-              onChange={(e) => handleItemClick(e.target.checked, data.id)}
-              checked={checkItems.includes(data.id) ? true : false}
+              key={data.id}
+              onChange={(e) => handleCheckChange(e, data.id)}
+              checked={checkItems.has(data.id)}
             />
             <Text $fontType="Body05" color="white">
               {data.description}
