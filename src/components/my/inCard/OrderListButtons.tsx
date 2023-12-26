@@ -13,7 +13,7 @@ interface OrderListButtonsProps {
   orderId: number;
 }
 
-enum FirstBtnString {
+enum FirstBtnText {
   ORDER_RECEIVED = '취소 요청',
   PREPARE_PRODUCT = '취소 요청',
   DELIVERY_START = '교환/환불 신청',
@@ -47,8 +47,12 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
   const handleRefundInfoOpenModal = () => {
     setIsRefundInfoOpen(true);
   };
+
   const handleRefundInfoCloseModal = () => {
     setIsRefundInfoOpen(false);
+  };
+
+  const handleRefundInfoSubmitModal = () => {
     setIsRefundApplyOpen(true);
   };
 
@@ -65,15 +69,15 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
       <GeneralWrapper>
         <GeneralButton
           type={ButtonType.Secondary}
-          onClick={FirstBtnString[orderState] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
+          onClick={FirstBtnText[orderState] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
         >
-          {FirstBtnString[orderState]}
+          {FirstBtnText[orderState]}
         </GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
           후기 작성하기
         </GeneralButton>
       </GeneralWrapper>
-      {FirstBtnString[orderState] === '취소 요청' ? (
+      {FirstBtnText[orderState] === '취소 요청' ? (
         <CancleModal
           modalOpen={isCancleOpen}
           modalClose={handleCancleCloseModal}
@@ -87,10 +91,16 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
             modalClose={handleRefundApplyCloseModal}
             setForm={setForm}
             inputString={['dd']}
+            menuItems={[
+              { id: 1, description: 'test1' },
+              { id: 2, description: 'test2' },
+              { id: 3, description: 'test3' },
+            ]}
           />
           <ExRefundInfoModal
             modalOpen={isRefundInfoOpen}
             modalClose={handleRefundInfoCloseModal}
+            onSubmit={handleRefundInfoSubmitModal}
             inputString={['dd']}
           />
         </>

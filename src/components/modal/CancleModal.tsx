@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, FormEvent, useEffect } from 'react';
+import styled from 'styled-components';
 import Modal, { ModalType } from './Modal';
-
 import CancleModalForm from './CancleModalForm';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorMessage from '../common/ErrorMessage';
@@ -11,6 +11,7 @@ export interface CouponModalProps {
   onCancleSubmit: (cancleReason: string[]) => void;
   orderId: number;
 }
+
 
 const CancleModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCancleSubmit, orderId }) => {
   return (
