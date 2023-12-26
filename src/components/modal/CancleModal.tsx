@@ -1,4 +1,4 @@
-import React, { useState, useRef, FormEvent } from 'react';
+import React, { useState, useRef, FormEvent, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal, { ModalType } from './Modal';
 import Text from '../common/Text';
@@ -35,23 +35,21 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
         onCancleSubmit([reasonTitle, reasonRef.current.value]);
 
         try {
-          const response = await cancleProductAPi(
-            { cancelReason: reasonTitle, content: reasonRef.current.value },
-            orderId,
-          );
+          const response = await cancleProductAPi(orderId, {
+            cancelReason: reasonTitle,
+            content: reasonRef.current.value,
+          });
           if (response.status === 200) {
-            const { accessToken } = response.data.result;
-            localStorage.setItem('accessToken', accessToken);
             modalClose();
 
             setTimeout(() => {
               if (confirm('취소 신청이 완료되었습니다. 취소 내역 상세로 이동하시겠습니까?')) {
-                navigate('/my-page/defnru - history');
+                navigate('/my-page/refund-history');
               }
             }, 0);
           }
         } catch (error: any) {
-          console.error(error.response);
+          console.log('오류가 발생하여 취소에 실패했습니다. 다시 시도해주십시오.');
           alert('오류가 발생하여 취소에 실패했습니다. 다시 시도해주십시오.');
           setReasonTitle('');
           modalClose();
@@ -98,7 +96,7 @@ const CouponModal: React.FC<CouponModalProps> = ({ modalOpen, modalClose, onCanc
             />
           </InputItemContainer>
           <Spacer height={10} />
-          <TextBox width="100%">
+          <TextBox width="100%" bgColor="grey90">
             <Text $fontType="Body04" color="grey30">
               - 취소관련 안내사항
             </Text>
