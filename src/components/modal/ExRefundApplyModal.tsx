@@ -37,10 +37,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, modalOpen, mod
   const { reset, getValues } = methods;
 
   const onClick = () => {
-    //여기서 API 호출하는게 나을듯
-
-    console.log(getValues());
-
+    //여기서 API 호출
     if (getValues('items').length === 0) {
       alert('상품을 선택하지 않으셨습니다.');
       return;
