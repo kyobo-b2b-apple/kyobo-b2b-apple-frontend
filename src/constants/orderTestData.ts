@@ -69,7 +69,7 @@ const orderTestData: OrderItemListProps[] = [
     deliveryFee: 2500,
     discountAmount: 0,
     discountRate: 0,
-    id: 41,
+    id: 42,
     orderAmount: 9882500,
     orderCode: '2023083141',
     orderItems: exOrderItems,
