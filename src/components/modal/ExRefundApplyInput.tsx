@@ -70,6 +70,7 @@ const ExRefunApplyInput: React.FC<ExRefundApplyInputProps> = ({ inputString, men
           height="162px"
           padding="13px"
           maxLength={300}
+          id="deatailReason"
           {...register('detailReason')}
         />
         <Spacer height={10} />
