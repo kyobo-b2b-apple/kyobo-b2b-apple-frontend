@@ -30,8 +30,9 @@ type FormValues = {
 };
 
 const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, modalOpen, modalClose, inputString }) => {
+  const defaultValue = { items: [], detailReason: '', refundType: ClaimStatus.EXCHANGE };
   const methods = useForm<FormValues>({
-    defaultValues: { items: [], detailReason: '', refundType: ClaimStatus.EXCHANGE },
+    defaultValues: defaultValue,
   });
 
   const { reset, getValues } = methods;
@@ -43,7 +44,7 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, modalOpen, mod
       return;
     }
 
-    reset({ items: [], detailReason: '', refundType: ClaimStatus.EXCHANGE });
+    reset(defaultValue);
     modalClose();
   };
 
