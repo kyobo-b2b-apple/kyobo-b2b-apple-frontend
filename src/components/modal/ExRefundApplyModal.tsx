@@ -34,12 +34,25 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, modalOpen, mod
     defaultValues: { items: [], detailReason: '', refundType: ClaimStatus.EXCHANGE },
   });
 
+  const { reset, getValues } = methods;
+
+  const onClick = () => {
+    //여기서 API 호출
+    if (getValues('items').length === 0) {
+      alert('상품을 선택하지 않으셨습니다.');
+      return;
+    }
+
+    reset({ items: [], detailReason: '', refundType: ClaimStatus.EXCHANGE });
+    modalClose();
+  };
+
   return (
     <Modal type={ModalType.POPUP} isModalOpen={modalOpen} onClose={modalClose} title="교환/반품 신청">
       <InputContainer>
         <FormProvider {...methods}>
           <ExRefunApplyInput inputString={inputString} menuItems={menuItems} />
-          <ExRefundApplyBtn onClick={modalClose} />
+          <ExRefundApplyBtn onClick={onClick} />
         </FormProvider>
       </InputContainer>
     </Modal>

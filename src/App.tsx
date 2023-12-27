@@ -66,6 +66,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/my-page" element={<MyPageLayout />}>
               <Route path="userchange" element={<MyPageUserChangePage />} />
+
               <Route path="/my-page/order-list" element={<OrderList />} />
 
               <Route path="/my-page/delivery-tracking/:orderCode" index element={<DeliveryTracking />} />
