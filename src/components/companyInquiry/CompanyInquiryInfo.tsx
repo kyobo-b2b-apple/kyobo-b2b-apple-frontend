@@ -9,6 +9,9 @@ import CompnayInquiryPage5 from '../../assets/CompanyInquiryImg/CompanyInquiryPa
 import CompnayInquiryPage6 from '../../assets/CompanyInquiryImg/CompnayInquiryPage6.png';
 import CompnayInquiryPage7 from '../../assets/CompanyInquiryImg/CompnayInquiryPage7.png';
 
+import CompanyInquiryImg from '../../assets/CompanyInquiryImg/img_coporateqna_desktop.svg';
+import Image from '../image/Image';
+
 interface ImageData {
   src: string;
   height: number;
@@ -41,10 +44,11 @@ const InquiryInfo = () => {
         </InfoFirst>
       </div>
       <Spacer />
+      <Image src={CompanyInquiryImg} alt="기업문의 이미지" />
 
-      {ImagesData.map((image: ImageData, index: number) => (
+      {/* {ImagesData.map((image: ImageData, index: number) => (
         <InfoImg key={index} src={image.src} alt="Company Inquiry" height={image.height} />
-      ))}
+      ))} */}
     </InquiryInfoContainer>
   );
 };
