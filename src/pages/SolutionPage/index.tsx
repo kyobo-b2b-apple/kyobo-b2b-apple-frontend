@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  img_solution_desktop,
   img_solution_tablet,
   img_solution_mobile,
   img_banner_desktop,
@@ -27,6 +26,7 @@ import {
   MobileTextStyle,
 } from '../../styles/typographyStyles';
 import useMediaPX from '../../hooks/useMediaPX';
+import img_solution_desktop from '../../assets/img/solution/img_solution_desktop.svg';
 
 const SolutionPage = () => {
   const topSolutionSpace = useMediaPX({ desktop: '9px', tablet: '9px', mobile: '6px' });
