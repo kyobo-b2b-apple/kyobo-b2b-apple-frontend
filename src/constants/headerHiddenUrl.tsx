@@ -1,0 +1,1 @@
+export const HEADER_HIDDEN_PAGE_URL = [ '/', '/login', '/inquiry', '/reward', '/category'];
