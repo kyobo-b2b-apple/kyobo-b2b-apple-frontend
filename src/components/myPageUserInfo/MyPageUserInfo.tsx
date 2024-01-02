@@ -5,6 +5,7 @@ import MyPageUserInfoChangeForm from './MyPageUserInfoChangeForm';
 import PasswordConfirm from './PasswordConfirm';
 import MyContainer from '../my/MyContainer';
 
+
 const MyPageUserInfo = () => {
   const [showForm, setShowForm] = useState(false);
   const [showChangeInfo, setShowChangeInfo] = useState(true);
@@ -14,22 +15,22 @@ const MyPageUserInfo = () => {
     setShowChangeInfo(false);
   };
   return (
-    <MyContainer label="내 정보 변경">
-      {showChangeInfo && (
-        <>
-          <ChangeInfo>
-            <Text $fontType="Body05" color="white">
-              -안내문구가 들어갑니다.
-              <br />
-              -안내문구가 들어갑니다.
-            </Text>
-          </ChangeInfo>
-          <Spacer height={17} />
-          <PasswordConfirm moveUserChangeForm={moveUserChangeForm} />
-        </>
-      )}
-      {showForm && <MyPageUserInfoChangeForm />}
-    </MyContainer>
+      <MyContainer label="내 정보 변경">
+        {showChangeInfo && (
+            <>
+              <ChangeInfo>
+                <Text $fontType="Body05" color="white">
+                  -안내문구가 들어갑니다.
+                  <br />
+                  -안내문구가 들어갑니다.
+                </Text>
+              </ChangeInfo>
+              <Spacer height={17} />
+              <PasswordConfirm moveUserChangeForm={moveUserChangeForm} />
+            </>
+        )}
+        {showForm && <MyPageUserInfoChangeForm />}
+      </MyContainer>
   );
 };
 

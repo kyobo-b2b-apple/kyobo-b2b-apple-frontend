@@ -1,2 +1,2 @@
-export const API_URL = process.env.REACT_APP_API_URL;
-// https://dev-portfolio.store/api/
+// export const API_URL = 'https://dev-portfolio.store';
+export const API_URL = 'http://localhost:9000';

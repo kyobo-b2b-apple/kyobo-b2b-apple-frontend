@@ -179,7 +179,7 @@ const JoinPersonalForm: React.FC<JoinPersonalFormProps> = ({
         <>
           <Spacer height={'64px'} />
           <UserWithdrawBtn>
-            <Text $fontType="Body05" color="grey40" textDecoration="underline">
+            <Text $fontType="Body05" color="grey40">
               회원탈퇴
             </Text>
           </UserWithdrawBtn>

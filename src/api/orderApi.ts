@@ -11,7 +11,7 @@ export interface OrderListProps {
 export const getOrderList = async ({ page, size, csOnly, year, accessToken }: OrderListProps) => {
   return axiosInstance.get('/api/orders', {
     params: { page, size, csOnly, year },
-    headers: { Authorization: `Bearer ${accessToken}` },
+    // headers: { Authorization: `Bearer ${accessToken}` },
   });
 };
 

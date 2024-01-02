@@ -10,13 +10,10 @@ const exProduct: OrderProductProps = {
   id: 50,
   price: 5990000,
   smallCategory: 'Mac Studio',
-  thumbnails: [''],
+  thumbnails: [
+    'https://apple-store-s3-bucket.s3.ap-northeast-2.amazonaws.com/device-thumbnails/iPad/iPadPro11/cell/SpaceGray/iPad_Pro_Cellular_11_in_4th_generation_Space_Gray_PDP_Image_Position-1b__KO-KR_20221011_V1.jpg',
+  ],
 };
-
-//s3 요청 횟수 문제로 우선 빼놓음
-/*thumbnails: [
-  'https://apple-store-s3-bucket.s3.ap-northeast-2.amazonaws.com/device-thumbnails/iPad/iPadPro11/cell/SpaceGray/iPad_Pro_Cellular_11_in_4th_generation_Space_Gray_PDP_Image_Position-1b__KO-KR_20221011_V1.jpg',
-],*/
 
 const exOrderItems: OrderItemProps[] = [
   {
@@ -47,7 +44,31 @@ const exRefundData: OrderItemListProps[] = [
     productAmount: 9880000,
     updatedAt: [2023, 8, 31, 7, 57, 15],
   },
+  {
+    createdAt: [2023, 8, 31, 7, 56, 53],
+    deliveryFee: 2500,
+    discountAmount: 0,
+    discountRate: 0,
+    id: 41,
+    orderAmount: 9882500,
+    orderCode: '2023083141',
+    orderItems: exOrderItems,
+    orderState: 'PREPARE_PRODUCT',
+    productAmount: 9880000,
+    updatedAt: [2023, 8, 31, 7, 57, 15],
+  },
+  {
+    createdAt: [2023, 8, 31, 7, 56, 53],
+    deliveryFee: 2500,
+    discountAmount: 0,
+    discountRate: 0,
+    id: 41,
+    orderAmount: 9882500,
+    orderCode: '2023083141',
+    orderItems: exOrderItems,
+    orderState: 'PREPARE_PRODUCT',
+    productAmount: 9880000,
+    updatedAt: [2023, 8, 31, 7, 57, 15],
+  },
 ];
-
-//reviwdId 속성 추가
 export default exRefundData;

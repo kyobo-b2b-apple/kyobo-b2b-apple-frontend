@@ -1,61 +1,15 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import CommonButton, { ButtonType } from '../../common/Button';
 import { MediumButton03, MediumButton04, MediumButton05 } from '../../../styles/buttonStyle';
-import CancleModal from '../../../components/modal/CancleModal';
-import ExRefundApplyModal from '../../modal/ExRefundApplyModal';
-import ExRefundInfoModal from '../../modal/ExRefundInfoModal';
 
 interface OrderListButtonsProps {
-  orderState: string;
+  orderButtonText: string;
   handleShippingClick: () => void;
   handleReviewClick: () => void;
-  orderId: number;
 }
 
-enum FirstBtnString {
-  ORDER_RECEIVED = '취소 요청',
-  PREPARE_PRODUCT = '취소 요청',
-  DELIVERY_START = '교환/환불 신청',
-  IN_TRANSIT = '교환/환불 신청',
-  DELIVERY_COMPLETED = '교환/환불 신청',
-}
-
-const OrderListButtons: FC<OrderListButtonsProps> = ({
-  orderId,
-  orderState,
-  handleShippingClick,
-  handleReviewClick,
-}) => {
-  const [isCancleOpen, setIsCancleOpen] = useState(false);
-  const [isRefundInfoOpen, setIsRefundInfoOpen] = useState(false);
-  const [isRefundApplyOpen, setIsRefundApplyOpen] = useState(false);
-
-  const [form, setForm] = useState(['', '']);
-
-  useEffect(() => {
-    // console.log(form);
-  }, [form]);
-
-  const handleCancleOpenModal = () => {
-    setIsCancleOpen(true);
-  };
-  const handleCancleCloseModal = () => {
-    setIsCancleOpen(false);
-  };
-
-  const handleRefundInfoOpenModal = () => {
-    setIsRefundInfoOpen(true);
-  };
-  const handleRefundInfoCloseModal = () => {
-    setIsRefundInfoOpen(false);
-    setIsRefundApplyOpen(true);
-  };
-
-  const handleRefundApplyCloseModal = () => {
-    setIsRefundApplyOpen(false);
-  };
-
+const OrderListButtons: FC<OrderListButtonsProps> = ({ orderButtonText, handleShippingClick, handleReviewClick }) => {
   return (
     <ButtonListWrapper>
       <ShippingButton type={ButtonType.Primary} onClick={handleShippingClick}>
@@ -63,38 +17,11 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
       </ShippingButton>
 
       <GeneralWrapper>
-        <GeneralButton
-          type={ButtonType.Secondary}
-          onClick={FirstBtnString[orderState] === '취소 요청' ? handleCancleOpenModal : handleRefundInfoOpenModal}
-        >
-          {FirstBtnString[orderState]}
-        </GeneralButton>
+        <GeneralButton type={ButtonType.Secondary}>교환, 반품 신청</GeneralButton>
         <GeneralButton type={ButtonType.Secondary} onClick={handleReviewClick}>
-          후기 작성하기
+          {orderButtonText}
         </GeneralButton>
       </GeneralWrapper>
-      {FirstBtnString[orderState] === '취소 요청' ? (
-        <CancleModal
-          modalOpen={isCancleOpen}
-          modalClose={handleCancleCloseModal}
-          onCancleSubmit={setForm}
-          orderId={orderId}
-        />
-      ) : (
-        <>
-          <ExRefundApplyModal
-            modalOpen={isRefundApplyOpen}
-            modalClose={handleRefundApplyCloseModal}
-            setForm={setForm}
-            inputString={['dd']}
-          />
-          <ExRefundInfoModal
-            modalOpen={isRefundInfoOpen}
-            modalClose={handleRefundInfoCloseModal}
-            inputString={['dd']}
-          />
-        </>
-      )}
     </ButtonListWrapper>
   );
 };
@@ -103,7 +30,7 @@ export default OrderListButtons;
 const ButtonListWrapper = styled.div`
   display: flex;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px)  {
     gap: 0px 6px;
     margin-top: auto;
   }
@@ -114,7 +41,7 @@ const ButtonListWrapper = styled.div`
 `;
 
 const ShippingButton = styled(CommonButton)`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px)  {
     ${MediumButton03}
   }
   @media screen and (max-width: 479px) {
@@ -130,7 +57,7 @@ const GeneralWrapper = styled.div`
 const GeneralButton = styled(CommonButton)`
   white-space: nowrap;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px)  {
     ${MediumButton04}
   }
   @media screen and (max-width: 479px) {

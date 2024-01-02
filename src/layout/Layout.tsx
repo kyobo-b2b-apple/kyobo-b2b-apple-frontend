@@ -5,35 +5,46 @@ import HeaderComponent from '../components/Header/Header';
 import FooterComponent from '../components/Footer';
 import { FOOTER_HIDDEN_PAGE_URL } from '../constants/footerHiddenUrl';
 import FloatingButton from '../components/common/FloatingButton';
+import { HEADER_HIDDEN_PAGE_URL } from '../constants/headerHiddenUrl';
+import Login from '../pages/loginPage/Login';
 
 const Layout: React.FC = () => {
-  const [hideFooter, setHideFooter] = useState(false);
-  const location = useLocation();
+    const [hideFooter, setHideFooter] = useState(false);
+    const [hideHeaderWrapper, setHideHeaderWrapper] = useState(false);
+    const location = useLocation();
 
-  useEffect(() => {
-    if (FOOTER_HIDDEN_PAGE_URL.includes(location.pathname)) {
-      setHideFooter(true);
-    } else {
-      setHideFooter(false);
-    }
-  }, [location]);
+    useEffect(() => {
+        if (FOOTER_HIDDEN_PAGE_URL.includes(location.pathname)) {
+            setHideFooter(true);
+        } else {
+            setHideFooter(false);
+        }
 
-  return (
-    <Container>
-      <HeaderWrapper>
-        <HeaderComponent />
-      </HeaderWrapper>
-      <FloatingButton />
-      <OutletWrapper>
-        <Outlet />
-      </OutletWrapper>
-      {!hideFooter && (
-        <FooterWrapper>
-          <FooterComponent />
-        </FooterWrapper>
-      )}
-    </Container>
-  );
+    }, [location]);
+
+
+
+    return (
+        <Container>
+            {!hideFooter && (
+                <>
+                    <HeaderWrapper>
+                        <HeaderComponent />
+                    </HeaderWrapper>
+                    <FloatingButton />
+
+                </>
+            )}
+            <OutletWrapper>
+                <Outlet />
+            </OutletWrapper>
+            {!hideFooter && (
+                <FooterWrapper>
+                    <FooterComponent />
+                </FooterWrapper>
+            )}
+        </Container>
+    );
 };
 
 export default Layout;

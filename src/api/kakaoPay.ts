@@ -35,11 +35,12 @@ export const handleOrderSubmit = async (products, orderUserInfo) => {
   console.log(orderData);
 
   try {
-    const response = await axiosInstance.post('/api/orders', orderData);
+    // const response = await axiosInstance.post('/api/orders', orderData);
+    //
+    //  const paymentPageUrl = response.data.result.nextRedirectUrl;
+    //
+    //  window.location.href = paymentPageUrl;
 
-    const paymentPageUrl = response.data.result.nextRedirectUrl;
-
-    window.location.href = paymentPageUrl;
   } catch (error) {
     console.log(error);
   }
