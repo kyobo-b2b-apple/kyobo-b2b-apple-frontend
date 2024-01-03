@@ -15,6 +15,7 @@ import { FormMode } from '../../../constants/userForm';
 import axiosInstance from '../../../api/axiosInstance';
 import Spacer from '../../common/Spacer';
 import { updateUserInfoApi } from '../../../api/userInfoChange';
+import { useNavigate } from 'react-router-dom';
 
 export interface PersonalFormData {
   loginId?: string;
@@ -55,6 +56,13 @@ const JoinPersonalForm: React.FC<JoinPersonalFormProps> = ({
     defaultValues: userInfo,
   });
   const [updatedUserInfo, setUpdatedUserInfo] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleQuit = () => {
+    navigate('/my-page/user-quit');
+  };
+
   useEffect(() => {
     if (userInfo) {
       setValue('loginId', userInfo.member.id);
@@ -178,7 +186,7 @@ const JoinPersonalForm: React.FC<JoinPersonalFormProps> = ({
       {mode === FormMode.Update && (
         <>
           <Spacer height={'64px'} />
-          <UserWithdrawBtn>
+          <UserWithdrawBtn onClick={handleQuit}>
             <Text $fontType="Body05" color="grey40" textDecoration="underline">
               회원탈퇴
             </Text>

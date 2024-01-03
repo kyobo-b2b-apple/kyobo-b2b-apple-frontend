@@ -36,6 +36,7 @@ import WishList from './pages/MyPageWithSidebar/WishList';
 import ProductInquiry from './pages/MyPageWithSidebar/ProductInquiry';
 import ProductReview from './pages/MyPageWithSidebar/ProductReview';
 import ScrollToTop from './components/common/ScrollToTop';
+import MyPageUserQuitPage from './pages/MyPage/Temp/MyPageUserQuitPage';
 
 function App() {
   return (
@@ -66,6 +67,8 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/my-page" element={<MyPageLayout />}>
               <Route path="userchange" element={<MyPageUserChangePage />} />
+              <Route path="/my-page/user-quit" element={<MyPageUserQuitPage />} />
+
               <Route path="/my-page/order-list" element={<OrderList />} />
 
               <Route path="/my-page/delivery-tracking/:orderCode" index element={<DeliveryTracking />} />
