@@ -2,7 +2,6 @@ import TextBox from '../common/TextBox';
 import CommonButton, { ButtonType } from '../common/Button';
 import SelectDropDown from '../common/SelectDropDown';
 import { StyledTextArea } from '../common/TextArea';
-import { InputStyle } from '../common/Input';
 import { Spacer, Text } from '../common';
 import { CheckBoxBtn } from '../common/CheckBoxBtn';
 import styled from 'styled-components';
@@ -60,6 +59,7 @@ const QuitForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Spacer height={40} />
       <TextBox width="100%" height="fit" bgColor="grey80">
         <Text $fontType="Body04" color="grey20">
           [KIKO MALL 회원탈퇴 안내사항]
