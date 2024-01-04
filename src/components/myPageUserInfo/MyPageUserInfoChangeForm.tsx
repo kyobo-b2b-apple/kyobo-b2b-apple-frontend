@@ -9,19 +9,19 @@ interface FormProps {}
 
 const MyPageUserInfoChangeForm: React.FC<FormProps> = () => {
   const [userInfo, setUserInfo] = useState(null);
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const data = await getUserInfoApi();
-        console.log('API response:', data);
-        setUserInfo(data);
-      } catch (error) {
-        console.log('유저 정보 조회 실패');
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const data = await getUserInfoApi();
+  //       console.log('API response:', data);
+  //       setUserInfo(data);
+  //     } catch (error) {
+  //       console.log('유저 정보 조회 실패');
+  //     }
+  //   };
 
-    fetchUserInfo();
-  }, []);
+  //   fetchUserInfo();
+  // }, []);
   const token = localStorage.getItem('accessToken');
   const test = () => {
     console.log(token);
