@@ -11,12 +11,15 @@ import NameForm from '../join/personalForm/NameForm';
 import { PersonalFormData } from '../join/personalForm/JoinPersonalForm';
 import PersonalInputCompnent from '../join/personalForm/PersonalInputComponent';
 import { info, quitReason } from '../../constants/quitInfo';
+import { useNavigate } from 'react-router-dom';
 
 const QuitForm = () => {
   const reasonRef = useRef<HTMLTextAreaElement>(null);
   const [quit, setQuit] = useState<string>('');
   const isValidId = (value: any) => /^[A-Za-z0-9\s]+$/.test(value);
   const [isCheck, setIsCheck] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleQuitTitle = (title: string) => {
     setQuit(title);
@@ -42,6 +45,9 @@ const QuitForm = () => {
       }
       formData.append('withdraw_agree_term1', 'true');
       console.log(Object.fromEntries(formData));
+
+      alert('회원 탈퇴가 완료되었습니다.');
+      navigate('/login');
     }
   };
 
