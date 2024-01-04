@@ -73,7 +73,7 @@ const orderTestData: OrderItemListProps[] = [
     discountRate: 0,
     id: 42,
     orderAmount: 9882500,
-    orderCode: '2023083141',
+    orderCode: '2023083142',
     orderItems: exOrderItems,
     orderState: 'DELIVERY_START',
     productAmount: 9880000,

@@ -27,6 +27,8 @@ const PasswordConfirm: React.FC<PasswordProps> = ({ moveUserChangeForm }) => {
     } catch (error) {
       console.error(error);
     }
+
+    moveUserChangeForm();
   };
   return (
     <PwInputWrap>

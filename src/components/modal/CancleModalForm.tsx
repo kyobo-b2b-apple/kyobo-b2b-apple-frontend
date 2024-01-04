@@ -21,7 +21,37 @@ const CancleModalForm: React.FC<CouponModalProps> = ({ modalClose, onCancleSubmi
   const navigate = useNavigate();
   const [apiError, setApiError] = useState<boolean>(false);
 
-  const handleSubmit = async (event: FormEvent) => {
+  // const handleSubmit = async (event: FormEvent) => {
+  //   event.preventDefault();
+
+  //   if (reasonRef.current) {
+  //     if (reasonRef.current.value === '') {
+  //       alert('취소 사유를 선택해주십시오.');
+  //     } else {
+  //       onCancleSubmit([reasonTitle, reasonRef.current.value]);
+
+  //       try {
+  //         const response = await cancleProductAPi(orderId, {
+  //           cancelReason: reasonTitle,
+  //           content: reasonRef.current.value,
+  //         });
+  //         if (response.status === 200) {
+  //           modalClose();
+
+  //           setTimeout(() => {
+  //             if (confirm('취소 신청이 완료되었습니다. 취소 내역 상세로 이동하시겠습니까?')) {
+  //               navigate('/my-page/refund-history');
+  //             }
+  //           }, 0);
+  //         }
+  //       } catch (error: any) {
+  //         setReasonTitle('');
+  //         setApiError(true); //여기서 에러 발생했음을 설정
+  //       }
+  //     }
+  //   }
+  // };
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     if (reasonRef.current) {
@@ -29,25 +59,13 @@ const CancleModalForm: React.FC<CouponModalProps> = ({ modalClose, onCancleSubmi
         alert('취소 사유를 선택해주십시오.');
       } else {
         onCancleSubmit([reasonTitle, reasonRef.current.value]);
+        modalClose();
 
-        try {
-          const response = await cancleProductAPi(orderId, {
-            cancelReason: reasonTitle,
-            content: reasonRef.current.value,
-          });
-          if (response.status === 200) {
-            modalClose();
-
-            setTimeout(() => {
-              if (confirm('취소 신청이 완료되었습니다. 취소 내역 상세로 이동하시겠습니까?')) {
-                navigate('/my-page/refund-history');
-              }
-            }, 0);
+        setTimeout(() => {
+          if (confirm('취소 신청이 완료되었습니다. 취소 내역 상세로 이동하시겠습니까?')) {
+            navigate('/my-page/refund-history');
           }
-        } catch (error: any) {
-          setReasonTitle('');
-          setApiError(true); //여기서 에러 발생했음을 설정
-        }
+        }, 0);
       }
     }
   };

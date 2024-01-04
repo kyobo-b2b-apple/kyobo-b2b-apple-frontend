@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react';
 import { getUserInfoApi } from '../../api/userInfoChange';
 import { refreshAccessToken } from '../../api/loginApi';
 
-interface FormProps {
-
-}
+interface FormProps {}
 
 const MyPageUserInfoChangeForm: React.FC<FormProps> = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -30,8 +28,7 @@ const MyPageUserInfoChangeForm: React.FC<FormProps> = () => {
   };
   return (
     <FormContainer>
-      <button onClick={test}>test</button>
-      {userInfo && <JoinPersonalForm mode={FormMode.Update} isBusiness={false} userInfo={userInfo} />}
+      <JoinPersonalForm mode={FormMode.Update} isBusiness={false} userInfo={userInfo} />
     </FormContainer>
   );
 };
