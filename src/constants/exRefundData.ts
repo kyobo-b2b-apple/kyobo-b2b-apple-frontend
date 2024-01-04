@@ -10,7 +10,9 @@ const exProduct: OrderProductProps = {
   id: 50,
   price: 5990000,
   smallCategory: 'Mac Studio',
-  thumbnails: [''],
+  thumbnails: [
+    'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipadpro11-digitalmat-gallery-1-202210?wid=728&hei=666&fmt=png-alpha&.v=1664477161220',
+  ],
 };
 
 //s3 요청 횟수 문제로 우선 빼놓음
