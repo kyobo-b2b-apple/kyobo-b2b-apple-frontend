@@ -37,13 +37,26 @@ const exOrderItems: OrderItemProps[] = [
 
 const exRefundData: OrderItemListProps[] = [
   {
-    createdAt: [2023, 8, 31, 7, 56, 53],
+    createdAt: [2024, 1, 4, 11, 20, 53],
     deliveryFee: 2500,
     discountAmount: 0,
     discountRate: 0,
     id: 41,
     orderAmount: 9882500,
     orderCode: '2023083141',
+    orderItems: exOrderItems,
+    orderState: 'PREPARE_PRODUCT',
+    productAmount: 9880000,
+    updatedAt: [2023, 8, 31, 7, 57, 15],
+  },
+  {
+    createdAt: [2024, 1, 4, 11, 20, 53],
+    deliveryFee: 2500,
+    discountAmount: 0,
+    discountRate: 0,
+    id: 41,
+    orderAmount: 9882500,
+    orderCode: '2023083142',
     orderItems: exOrderItems,
     orderState: 'PREPARE_PRODUCT',
     productAmount: 9880000,

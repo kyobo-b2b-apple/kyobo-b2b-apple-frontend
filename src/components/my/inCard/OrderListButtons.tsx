@@ -91,7 +91,7 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
             modalOpen={isRefundApplyOpen}
             modalClose={handleRefundApplyCloseModal}
             setForm={setForm}
-            inputString={['dd']}
+            inputString={['교환/반품 안내문구']}
             menuItems={[
               { id: 1, description: 'test1' },
               { id: 2, description: 'test2' },
@@ -102,7 +102,7 @@ const OrderListButtons: FC<OrderListButtonsProps> = ({
             modalOpen={isRefundInfoOpen}
             modalClose={handleRefundInfoCloseModal}
             onSubmit={handleRefundInfoSubmitModal}
-            inputString={['dd']}
+            inputString={['교환/반품 안내문구']}
           />
         </>
       )}

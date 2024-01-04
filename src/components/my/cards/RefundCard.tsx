@@ -16,7 +16,7 @@ const RefundCard = ({ item, date, orderCode }: OrderCardProps) => {
 
   return (
     <Card>
-      <CardTitle label={date + ' 취소완료'} isBlock={true}>
+      <CardTitle label={date + (orderCode === '2023083141' ? ' 취소완료' : ' 교환신청')} isBlock={true}>
         <OrderNumberText orderNumber={orderCode} />
       </CardTitle>
       <CardContent>
