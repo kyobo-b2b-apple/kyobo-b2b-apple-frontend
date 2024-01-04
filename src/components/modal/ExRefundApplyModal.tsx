@@ -5,6 +5,7 @@ import { ItemsContent } from '../common/CheckDropDown';
 import { FormProvider, useForm } from 'react-hook-form';
 import ExRefunApplyInput from './ExRefundApplyInput';
 import ExRefundApplyBtn from './ExRefundApplyBtn';
+import { useNavigate } from 'react-router-dom';
 
 interface ExRefundProps {
   setForm: (input: string[]) => void;
@@ -36,12 +37,17 @@ const ExRefundApplyModal: React.FC<ExRefundProps> = ({ menuItems, modalOpen, mod
   });
 
   const { reset, getValues } = methods;
+  const navigate = useNavigate();
 
   const onClick = () => {
     //여기서 API 호출
     if (getValues('items').length === 0) {
       alert('상품을 선택하지 않으셨습니다.');
       return;
+    }
+
+    if (confirm('교환/환불 신청이 완료되었습니다. 교환/환불 내역 상세로 이동하시겠습니까?')) {
+      navigate('/my-page/refund-history');
     }
 
     reset(defaultValue);
